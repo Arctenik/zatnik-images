@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	
+		<link rel="stylesheet" href="../content.css">
+		<link rel="stylesheet" href="utils.css">
+	
+	</head>
+	
+	<body>
+		
+		Some utilities for working with <a href="..">Zatnik images</a>
+		
+		<br><br><br>
+		
+		<h2>PNG to Zatnik</h2>
+		
+		Select file: <input id="pngInp" type="file" accept="image/png">
+		<br><br>
+		<button id="pngConvertButton">Convert</button>
+		<div id="zatnikOutContainer">
+			<br><br>
+			Result:
+			<br><br>
+			<textarea id="zatnikOut"></textarea>
+		</div>
+		
+		<br><br><br>
+		
+		<h2>Zatnik to PNG</h2>
+		
+		Image code:
+		<br><br>
+		<textarea id="zatnikInp"></textarea>
+		<br><br>
+		<button id="zatnikConvertButton">Convert and download</button>
+		<button id="zatnikViewButton">Convert and view</button>
+		<div id="pngOutContainer">
+			<br><br>
+			<a id="pngOut" download="image.png">Download result</a>
+		</div>
+		<div id="pngViewContainer">
+			<br><br>
+			<img id="pngView">
+		</div>
+		
+		
+		<script src="zlib.js"></script>
+		<script src="png.js"></script>
+		<script src="utils.js"></script>
+	
+	</body>
+	
+</html>
