@@ -3,3 +3,8 @@
 #zatnikOutContainer, #pngOutContainer {
 	display: none;
 }
+
+#pngView {
+	image-rendering: -moz-crisp-edges;
+	image-rendering: pixelated;
+}
