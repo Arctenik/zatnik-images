@@ -16,3 +16,7 @@ li {
 .indent {
 	margin-left: 1em;
 }
+
+.example:hover {
+	background: #eee;
+}

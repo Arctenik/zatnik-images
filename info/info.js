@@ -6,7 +6,7 @@ document.querySelectorAll(".hl").forEach(elem => {
 	var hlSelector;
 	for (let c of elem.classList) {
 		if (c.substring(0, 2) === "ex") {
-			hlSelector = `.${c.substring(0, 3)} .${c}`;
+			hlSelector = `.example .${c}`;
 			break;
 		}
 	}
@@ -24,3 +24,12 @@ document.querySelectorAll(".hl").forEach(elem => {
 		});
 	}
 });
+
+[...document.querySelectorAll(".example")].forEach(elem => {
+	elem.addEventListener("click", e => {
+		var s = window.getSelection();
+		s.removeAllRanges();
+		s.selectAllChildren(elem);
+	});
+});
+
