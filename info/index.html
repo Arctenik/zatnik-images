@@ -53,7 +53,7 @@
 		<span class="ex2 code">5*1/10000000<span class="ex2id2">1</span>00000020000003000000<span class="ex2id5">4</span>000000<span class="ex2namedslashes">//</span><span class="ex2named"><span class="ex2namedtype">alph</span><span class="ex2namedcontent"><span class="ex2alphval">00</span><span class="ex2alphval ex2alpha2">3f</span><span class="ex2alphval">7f</span><span class="ex2alphval">bf</span></span></span>/01234</span>
 		
 		<p>
-			An image code may also contain one or more optional <span class="hl ex2named">named sections</span>, which can be located anywhere in the image code (except inside other sections). Each named section is preceded by <span class="hl ex2namedslashes">two forward slashes</span> rather than one, which <strong>must</strong> be present regardless of where in the image code the section is. The section begins with <span class="hl ex2namedtype">four characters</span> that determine the section's type. These characters, like color IDs, can include any available character except forward slash. In this example, the named section is of the <span class="code">alph</span> type, meaning that it specifies alpha values for the image's colors. The <span class="hl ex2namedcontent">rest of the section</span> is type-specific content, interpreted based on the section's type. Sections with types that serve an unknown purpose are ignored.
+			An image code may also contain one or more optional <span class="hl ex2named">named sections</span>, which can be located anywhere in the image code (except inside other sections). Each named section is preceded by <span class="hl ex2namedslashes">two forward slashes</span> rather than one, which <strong>must</strong> be present regardless of where in the image code the section is. The section begins with <span class="hl ex2namedtype">four characters</span> that determine the section's type. Those four characters, as well as the rest of the section, can, like color IDs, include any available character except forward slash. In this example, the named section is of the <span class="code">alph</span> type, meaning that it specifies alpha values for the image's colors. The <span class="hl ex2namedcontent">rest of the section</span> is type-specific content, interpreted based on the section's type. Sections with types that serve an unknown purpose are ignored.
 		</p>
 		
 		<h3>The <span class="code">alph</span> type</h3>
@@ -65,14 +65,43 @@
 			Any number of alpha values may be omitted from the end of the section. Any such values will be assumed to be <span class="code">ff</span>. In the above example, the <span class="hl ex2id5">ID</span> <span class="code">4</span> has no corresponding value in the <span class="code">alpha</span> section, so pixels with the color ID <span class="code">4</span> will be fully opaque.
 		</p>
 		
+		<h3>The <span class="code">comm</span> type</h3>
+		
+		A <span class="code">comm</span> (for "comment") section consists simply of text (see <a href="#textFormatSection">Text format</a>). A section of this type is used to attach arbitrary textual information to the image.
+		
 		<h3>Other types</h3>
 		
 		<p>
 			Currently there are no other officially-described named section types.
 		</p>
 		
-
-
+		<h2>Other information</h2>
+		
+		<h3 id="textFormatSection">Text format</h3>
+		
+		<span class="ex3 code">//<span class="ex3comm">comm<span class="ex3cap">\ct</span><span class="ex3lit">h</span><span class="ex3lit">i</span><span class="ex3lit">s</span><span class="ex3space">\s</span><span class="ex3lit">i</span><span class="ex3lit">m</span><span class="ex3lit">a</span><span class="ex3lit">g</span><span class="ex3lit">e</span><span class="ex3space">\s</span><span class="ex3lit">i</span><span class="ex3lit">s</span><span class="ex3space">\s</span><span class="ex3lit">j</span><span class="ex3lit">u</span><span class="ex3lit">s</span><span class="ex3lit">t</span><span class="ex3space">\s</span><span class="ex3lit">a</span><span class="ex3space">\s</span><span class="ex3lit">d</span><span class="ex3lit">e</span><span class="ex3lit">m</span><span class="ex3lit">o</span><span class="ex3lit">n</span><span class="ex3lit">s</span><span class="ex3lit">t</span><span class="ex3lit">r</span><span class="ex3lit">a</span><span class="ex3lit">t</span><span class="ex3lit">i</span><span class="ex3lit">o</span><span class="ex3lit">n</span><span class="ex3space">\s</span><span class="ex3lit">o</span><span class="ex3lit">f</span><span class="ex3space">\s</span><span class="ex3lit">t</span><span class="ex3lit">e</span><span class="ex3lit">x</span><span class="ex3lit">t</span><span class="ex3lit">.</span><span class="ex3space">\s</span><span class="ex3unicode">\u263a;</span></span>/1*1/1071db17/0</span>
+		
+		<p>
+			Some types of sections, such as the <span class="hl ex3comm"><span class="code">comm</span> section</span> shown above, may contain arbitrary text. Since image codes are somewhat limited in what characters they can contain and distinguish, not all text characters can be represented literally. Characters are represented as follows:
+		</p>
+		
+		<ul>
+			<li>Any non-capital <span class="hl ex3lit">character</span>, other than backslash, that a named section can contain may be represented simply by that character. (Note that, since image codes are case-insensitive, this means that a capital letter on its own will actually represent its lowercase equivalent.)</li>
+			<li>A <span class="hl ex3unicode">Unicode character</span> may be represented by the sequence <span class="code">\u<i>&lt;code point&gt;</i>;</span> where <span class="code"><i>&lt;code point&gt;</i></span> is a hexadecimal number with any number of digits.</li>
+			<li>A <span class="hl ex3cap">letter that can be in an image code</span> can be made uppercase by prefixing it with <span class="code">\c</span> &mdash; in the example, <span class="code">\ct</span> produces an uppercase T.</li>
+			<li>Backslash, forward slash, <span class="hl ex3space">space</span>, tab, line feed, and carriage return may be represented as <span class="code">\\</span>, <span class="code">\l</span>, <span class="code">\s</span>, <span class="code">\t</span>, <span class="code">\n</span>, and <span class="code">\r</span> respectively.</li>
+		</ul>
+			
+		<p>
+			The text represented by the comment in this example is:
+		</p>
+		
+		<p class="indent">
+			This image is just a demonstration of text. &#x263a;
+		</p>
+		
+		
+		
 		<script src="info.js"></script>
 
 	</body>

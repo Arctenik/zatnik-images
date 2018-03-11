@@ -8,3 +8,11 @@
 	border-bottom: 1px dashed lightgreen;
 	color: green;
 }
+
+li {
+	margin-bottom: 0.5em;
+}
+
+.indent {
+	margin-left: 1em;
+}

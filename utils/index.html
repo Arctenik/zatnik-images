@@ -21,7 +21,7 @@
 		Select file: <input id="pngInp" type="file" accept="image/png">
 		<br><br>
 		<button id="pngConvertButton">Convert</button>
-		<div id="zatnikOutContainer">
+		<div id="zatnikOutContainer" class="hidden">
 			<br><br>
 			Result:
 			<br><br>
@@ -38,13 +38,19 @@
 		<br><br>
 		<button id="zatnikConvertButton">Convert and download</button>
 		<button id="zatnikViewButton">Convert and view</button>
-		<div id="pngOutContainer">
+		<div id="pngOutContainer" class="hidden">
 			<br><br>
 			<a id="pngOut" download="image.png">Download result</a>
 		</div>
 		<div id="pngViewContainer">
 			<br><br>
 			<img id="pngView">
+			<div id="commentsElem" class="hidden">
+				<br>
+				Comments:
+				<br><br>
+				<div id="commentsList"></div>
+			</div>
 		</div>
 		
 		

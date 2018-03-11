@@ -10,9 +10,12 @@ var pngInp = document.getElementById("pngInp"),
     pngOutContainer = document.getElementById("pngOutContainer"),
     pngOut = document.getElementById("pngOut");
     pngViewContainer = document.getElementById("pngViewContainer"),
-    pngView = document.getElementById("pngView");
+    pngView = document.getElementById("pngView"),
+    commentsElem = document.getElementById("commentsElem"),
+    commentsList = document.getElementById("commentsList");
 
-var colorIdChars = "0123456789abcdefghijklmnopqrstuvwxyz~`!@#$%^&*()-_=+[{]}\\|;:'\",<.>?";
+var colorIdChars = "0123456789abcdefghijklmnopqrstuvwxyz~`!@#$%^&*()-_=+[{]}\\|;:'\",<.>?",
+	multiSections = new Set(["comm"]);
 
 
 
@@ -24,7 +27,7 @@ pngConvertButton.onclick = () => {
 	PNG.load(url, canvas, () => {
 		URL.revokeObjectURL(url);
 		zatnikOut.value = imageDataToZatnik(ctx.getImageData(0, 0, canvas.width, canvas.height));
-		zatnikOutContainer.style.display = "block";
+		zatnikOutContainer.classList.remove("hidden");
 	});
 }
 
@@ -90,30 +93,41 @@ function hexByte(num) {
 
 zatnikConvertButton.onclick = () => convertZatnik(url => {
 	pngOut.href = url;
-	pngOutContainer.style.display = "block";
+	pngOutContainer.classList.remove("hidden");
 });
 
-zatnikViewButton.onclick = () => convertZatnik(url => {
+zatnikViewButton.onclick = () => convertZatnik((url, {comments}) => {
 	pngView.src = url;
-	pngViewContainer.style.display = "block";
+	if (comments.length) {
+		commentsList.innerHTML = "";
+		comments.forEach(c => {
+			var elem = document.createElement("div");
+			elem.textContent = c;
+			commentsList.appendChild(elem);
+		});
+		commentsElem.classList.remove("hidden");
+	} else commentsElem.classList.add("hidden");
+	pngViewContainer.classList.remove("hidden");
 });
 
-function convertZatnik(urlCallback) {
+function convertZatnik(callback) {
 	var canvas = document.createElement("canvas"),
 		ctx = canvas.getContext("2d"),
-		data = zatnikToImageData(zatnikInp.value);
+		image = parseZatnik(zatnikInp.value),
+		data = zatnikToImageData(image);
 	
 	canvas.width = data.width;
 	canvas.height = data.height;
 	ctx.putImageData(data, 0, 0);
 	
-	urlCallback(canvas.toDataURL());
+	callback(canvas.toDataURL(), image);
 }
 
 
-function zatnikToImageData(code) {
-	var image = parseZatnik(code),
-		data = new ImageData(image.width, image.height),
+function zatnikToImageData(image) {
+	if (typeof image === "string") image = parseZatnik(image);
+	
+	var data = new ImageData(image.width, image.height),
 		pixels = data.data;
 	
 	image.pixels.forEach(([r, g, b, a], i) => {
@@ -136,7 +150,11 @@ function parseZatnik(code) {
 	while (code) {
 		let section, name;
 		[code, section, name] = parseZatnikSection(code);
-		sections[name || ++prevOrderedSection] = section;
+		if (name) {
+			if (multiSections.has(name)) {
+				(sections[name] || (sections[name] = [])).push(section);
+			} else sections[name] = section;
+		} else sections[++prevOrderedSection] = section;
 	}
 	
 	var idLength = parseInt(sections[1][0]),
@@ -172,7 +190,8 @@ function parseZatnik(code) {
 		pixels.push(colors[sections[2].substring(i, i + idLength)]);
 	
 	return {
-		width, height, pixels
+		width, height, pixels,
+		comments: sections.comm ? sections.comm.map(s => parseZatnikText(s)) : []
 	}
 }
 
@@ -190,3 +209,33 @@ function parseZatnikSection(code) {
 	
 	return [code.substring(sectionEnd), code.substring(i, sectionEnd), name];
 }
+
+function parseZatnikText(code) {
+	var result = "";
+	for (let i = 0; i < code.length;) {
+		if (code[i] === "\\") {
+			let type = code[i + 1];
+			if (type === "u") {
+				let endIndex = code.indexOf(";", i);
+				result += String.fromCodePoint(parseInt(code.substring(i + 2, endIndex), 16));
+				i = endIndex + 1;
+			} else if (type === "c") {
+				result += code[i + 2].toUpperCase();
+				i += 3;
+			} else {
+				if (type === "l") result += "/";
+				else if (type === "s") result += " ";
+				else if (type === "t") result += "\t";
+				else if (type === "n") result += "\n";
+				else if (type === "r") result += "\r";
+				else result += type;
+				i += 2;
+			}
+		} else {
+			result += code[i];
+			i += 1;
+		}
+	}
+	return result;
+}
+

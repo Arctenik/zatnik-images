@@ -1,10 +1,19 @@
 
 
-#zatnikOutContainer, #pngOutContainer {
-	display: none;
-}
-
 #pngView {
 	image-rendering: -moz-crisp-edges;
 	image-rendering: pixelated;
+}
+
+#commentsList {
+	margin-left: 1em;
+}
+
+#commentsList > div {
+	white-space: pre;
+	margin-bottom: 0.5em;
+}
+
+.hidden {
+	display: none;
 }
