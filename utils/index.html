@@ -5,6 +5,8 @@
 	
 		<title>Zatnik images - Utilities</title>
 		
+		<link rel="icon" href="../icon.png">
+		
 		<link rel="stylesheet" href="../content.css">
 		<link rel="stylesheet" href="utils.css">
 	
@@ -37,7 +39,11 @@
 		<textarea id="zatnikInp"></textarea>
 		<br><br>
 		<button id="zatnikConvertButton">Convert and download</button>
-		<button id="zatnikViewButton">Convert and view</button>
+		<button id="zatnikViewButton">Convert and view</button> | View scale: <input type="number" id="pngScaleInp" value="6">
+		<div id="zatnikErrorContainer" class="hidden">
+			<br><br>
+			<span id="zatnikErrorElem"></span>
+		</div>
 		<div id="pngOutContainer" class="hidden">
 			<br><br>
 			<a id="pngOut" download="image.png">Download result</a>

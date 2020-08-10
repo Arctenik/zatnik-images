@@ -5,6 +5,8 @@
 		
 		<title>Zatnik images - Info</title>
 		
+		<link rel="icon" href="../icon.png">
+		
 		<link rel="stylesheet" href="../content.css">
 		<link rel="stylesheet" href="info.css">
 
@@ -22,7 +24,7 @@
 			Feedback on parts of this page that are unclear or difficult to understand is welcome, either through a <a href="https://github.com/Arctenik/zatnik-images/issues">GitHub issue</a> or perhaps through <a href="https://scratch.mit.edu/discuss/topic/32129/">this thread</a> on the Scratch forums.
 		</p>
 		
-		<h2>Some notes</h2>
+		<h2>Some general notes</h2>
 		
 		<ul>
 			<li>Image codes are case-insensitive; e.g., anywhere that a "q" appears in an image code, a "Q" would function identically.</li>
@@ -36,30 +38,30 @@
 			A basic image consists of three mandatory <i>unnamed sections</i>. Each one is preceded by a <span class="hl ex1slash">forward slash</span>, though this is optional on <span class="hl ex1wh">an unnamed section at the beginning of the image code</span> (and is omitted in this example). The unnamed sections are <i>dimensions</i>, <i>color definitions</i>, and <i>pixels</i>, and must appear in that order.
 		</p>
 		<p>
-			The <span class="hl ex1wh">first unnamed section</span>, dimensions, consists simply of the image's <span class="hl ex1w">width</span> and <span class="hl ex1h">height</span>, separated by an <span class="hl ex1star">asterisk</span>. This example image is six pixels wide and five pixels tall.
+			The <span class="hl ex1wh">first unnamed section</span>, <i>dimensions,</i> consists simply of the image's <span class="hl ex1w">width</span> and <span class="hl ex1h">height</span>, separated by an <span class="hl ex1star">asterisk</span>. This example image is six pixels wide and five pixels tall.
 		</p>
 		<p>
-			The <span class="hl ex1colorinf">second unnamed section</span>, color definitions, lists the colors that are present in the image and assigns each one an ID. The section begins with a <span class="hl ex1idlen">single digit</span>, which determines how many characters long each color ID will be. In this example, each color ID is one character long.
+			The <span class="hl ex1colorinf">second unnamed section</span>, <i>color definitions,</i> lists the colors that are present in the image and assigns each one an ID. The section begins with a <span class="hl ex1idlen">single digit</span>, which determines how many characters long each color ID will be. In this example, each color ID is one character long.
 		</p>
 		<p>
-			The <span class="hl ex1colors">rest of the section</span> is a list of IDs and the colors associated with them. <span class="hl ex1colordef">Each item</span> in this list consists of an <span class="hl ex1id">ID</span> of the length specified at the beginning of the section, followed by a <span class="hl ex1color">six-character hexadecimal RGB color</span>. An ID can contain any available character except forward slash. The <span class="hl ex1colordef1">first definition</span> in this example assigns the <span class="hl ex1color1">color</span> <span class="code">ffc2c2</span> to the <span class="hl ex1id1">ID</span> <span class="code">0</span>. The ID and color in a definition may optionally be separated by an equals sign, so the first definition in this example could also be written as <span class="code">0=ffc2c2</span>.
+			The <span class="hl ex1colors">rest of the section</span> is a list of IDs and the colors associated with them. <span class="hl ex1colordef">Each item</span> in this list consists of an <span class="hl ex1id">ID</span> of the length specified at the beginning of the section, followed by a <span class="hl ex1color">six-character hexadecimal RGB color</span>. An ID can contain any character that's within image code restrictions and is not a forward slash. The <span class="hl ex1colordef1">first definition</span> in this example assigns the <span class="hl ex1color1">color</span> <span class="code">ffc2c2</span> to the <span class="hl ex1id1">ID</span> <span class="code">0</span>. The ID and color in a definition may optionally be separated by an equals sign, so the first definition in this example could also be written as <span class="code">0=ffc2c2</span>.
 		</p>
 		<p>
-			The <span class="hl ex1pixels">third and final unnamed section</span>, pixels, is a list of the pixels in the image, going left-to-right, top-to-bottom. Each pixel is represented by one of the color IDs defined in the second unnamed section. In this example, the <span class="hl ex1row1">topmost row of pixels</span>, i.e. the <span class="hl ex1row1id">first six IDs</span> in the pixels section, has pixels with the colors <span class="code">ffc2c2</span>, <span class="code">ffffff</span>, <span class="code">599100</span>, <span class="code">ffc2c2</span>, <span class="code">ffffff</span>, and <span class="code">ffffff</span>.
+			The <span class="hl ex1pixels">third and final unnamed section</span>, <i>pixels,</i> is a list of the pixels in the image, going left-to-right, top-to-bottom. Each pixel is represented by one of the color IDs defined in the second unnamed section. In this example, the <span class="hl ex1row1">topmost row of pixels</span>, i.e. the <span class="hl ex1row1id">first six IDs</span> in the pixels section, has pixels with the colors <span class="code">ffc2c2</span>, <span class="code">ffffff</span>, <span class="code">599100</span>, <span class="code">ffc2c2</span>, <span class="code">ffffff</span>, and <span class="code">ffffff</span>.
 		</p>
 		
 		<h2>Named sections</h2>
 		
-		<!-- ex2 --> <span class="example code">5*1/10000000<span class="ex2id2">1</span>00000020000003000000<span class="ex2id5">4</span>000000<span class="ex2namedslashes">//</span><span class="ex2named"><span class="ex2namedtype">alph</span><span class="ex2namedcontent"><span class="ex2alphval">00</span><span class="ex2alphval ex2alpha2">3f</span><span class="ex2alphval">7f</span><span class="ex2alphval">bf</span></span></span>/01234</span>
+		<!-- ex2 --> <span class="example code">5*1/10000000<span class="ex2id2">1</span>00000020000003000000<span class="ex2id5">4</span>000000<span class="ex2namedslashes">//</span><span class="ex2named"><span class="ex2namedtype">alph</span><span class="ex2namedcontent"><span class="ex2alphval">00</span><span class="ex2alphval ex2alpha2">33</span><span class="ex2alphval">77</span><span class="ex2alphval">bb</span></span></span>/01234</span>
 		
 		<p>
-			An image code may also contain one or more optional <span class="hl ex2named">named sections</span>, which can be located anywhere in the image code (except inside other sections). Each named section is preceded by <span class="hl ex2namedslashes">two forward slashes</span> rather than one, which <strong>must</strong> be present regardless of where in the image code the section is. The section begins with <span class="hl ex2namedtype">four characters</span> that determine the section's type. Those four characters, as well as the rest of the section, can, like color IDs, include any available character except forward slash. In this example, the named section is of the <span class="code">alph</span> type, meaning that it specifies alpha values for the image's colors. The <span class="hl ex2namedcontent">rest of the section</span> is type-specific content, interpreted based on the section's type. Sections with types that serve an unknown purpose are ignored.
+			An image code may also contain one or more optional <span class="hl ex2named">named sections</span>, which can be located anywhere in the image code (except inside other sections). Each named section is preceded by <span class="hl ex2namedslashes">two forward slashes</span> rather than one, which <strong>must</strong> be present regardless of where in the image code the section is. The section begins with <span class="hl ex2namedtype">four characters</span> that determine the section's type. Like color IDs, those four characters&mdash;as well as the rest of the section&mdash;can include any character, other than forward slash, that is within image code restrictions. In this example, the named section is of the <span class="code">alph</span> type, meaning that it specifies alpha values for the image's colors. The <span class="hl ex2namedcontent">rest of the section</span> is type-specific content, interpreted based on the section's type. Sections with types that serve an unknown or unneeded purpose can be ignored by a reader.
 		</p>
 		
 		<h3>The <span class="code">alph</span> type</h3>
 		
 		<p>
-			The <span class="code">alph</span> section determines the alpha, i.e. transparency, values associated with each color ID in the image. Continuing with the above example, the section's content is a list of <span class="hl ex2alphval">two-character hexadecimal alpha values</span>. These values correspond to the color definitions in the second unnamed section, such that the first alpha value corresponds to the first color definition, the second alpha value to the second color definition, etc. Pixels with a given color ID take on the alpha value corresponding to that ID. In the above example, the <span class="hl ex2id2">ID</span> <span class="code">1</span> corresponds the <span class="hl ex2alpha2">alpha value</span> <span class="code">3f</span>, meaning that pixels with the color ID <span class="code">1</span> will have ~25% opacity.
+			The <span class="code">alph</span> section determines the alpha, i.e. transparency, values associated with each color ID in the image. Continuing with the above example, the section's content is a list of <span class="hl ex2alphval">two-character hexadecimal alpha values</span>. These values correspond to the color definitions in the second unnamed section, such that the first alpha value corresponds to the first color definition, the second alpha value to the second color definition, etc. Pixels with a given color ID take on the alpha value corresponding to that ID. In the above example, the <span class="hl ex2id2">ID</span> <span class="code">1</span> corresponds the hexadecimal <span class="hl ex2alpha2">alpha value</span> <span class="code">33</span>, meaning that pixels with the color ID <span class="code">1</span> will have 20% opacity.
 		</p>
 		<p>
 			Any number of alpha values may be omitted from the end of the section. Any such values will be assumed to be <span class="code">ff</span>. In the above example, the <span class="hl ex2id5">ID</span> <span class="code">4</span> has no corresponding value in the <span class="code">alpha</span> section, so pixels with the color ID <span class="code">4</span> will be fully opaque.
@@ -67,7 +69,7 @@
 		
 		<h3>The <span class="code">comm</span> type</h3>
 		
-		A <span class="code">comm</span> (for "comment") section consists simply of text (see <a href="#textFormatSection">Text format</a>). A section of this type is used to attach arbitrary textual information to the image.
+		A <span class="code">comm</span> (for "comment") section consists simply of text (see <a href="#textFormatSection">Text format</a>). A section of this type is used to attach arbitrary textual information to the image. An image code may contain multiple comment sections.
 		
 		<h3>Other types</h3>
 		
@@ -99,6 +101,34 @@
 		<p class="indent">
 			This image is just a demonstration of text. &#x263a;
 		</p>
+		
+		<h2>Changelog</h2>
+		
+		<p>
+			<i>(Changes that don't affect meaning are omitted)</i>
+		</p>
+		
+		<h4>2017-05-06:</h4> 
+		
+		<ul>
+			<li>Added restriction on characters that can appear in image code</li>
+		</ul>
+		
+		<h4>2018-03-10:</h4> 
+		
+		<ul>
+			<li>Further clarification of character restrictions in named sections</li>
+			<li>Added description of the comment section type</li>
+			<li>Added information on how the format encodes textual data</li>
+		</ul>
+		
+		<h4>2020-08-09:</h4> 
+		
+		<ul>
+			<li>Added changelog, retroactively inserting previous entries based on GitHub commits</li>
+			<li>Changed alpha example so that the mentioned alpha value is an integer percentage</li>
+			<li>Further clarification of how named sections can be ignored</li>
+		</ul>
 		
 		
 		
