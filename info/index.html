@@ -24,11 +24,11 @@
 			Feedback on parts of this page that are unclear or difficult to understand is welcome, either through a <a href="https://github.com/Arctenik/zatnik-images/issues">GitHub issue</a> or perhaps through <a href="https://scratch.mit.edu/discuss/topic/32129/">this thread</a> on the Scratch forums.
 		</p>
 		
-		<h2>Some general notes</h2>
+		<h2>Some general rules</h2>
 		
 		<ul>
 			<li>Image codes are case-insensitive; e.g., anywhere that a "q" appears in an image code, a "Q" would function identically.</li>
-			<li>Image codes should probably only contain characters from U+0021 to U+007E, inclusive, but this may be subject to expansion.</li>
+			<li>Image codes should probably only contain characters from U+0021 to U+007E, inclusive, but this may be subject to expansion. (Note that, due to case-insensitivity, this is effectively only 68 distinct characters.)</li>
 		</ul>
 		
 		<h2>Basics</h2>
@@ -49,6 +49,12 @@
 		<p>
 			The <span class="hl ex1pixels">third and final unnamed section</span>, <i>pixels,</i> is a list of the pixels in the image, going left-to-right, top-to-bottom. Each pixel is represented by one of the color IDs defined in the second unnamed section. In this example, the <span class="hl ex1row1">topmost row of pixels</span>, i.e. the <span class="hl ex1row1id">first six IDs</span> in the pixels section, has pixels with the colors <span class="code">ffc2c2</span>, <span class="code">ffffff</span>, <span class="code">599100</span>, <span class="code">ffc2c2</span>, <span class="code">ffffff</span>, and <span class="code">ffffff</span>.
 		</p>
+		
+		<h4>Notes</h4>
+		
+		<ul>
+			<li>It is <em>recommended</em>, but not required, that, when possible, color definitions be ordered so that the most common colors appear at the beginning; this can improve speed when decoding in an environment (such as Scratch) where constant-time mapping between color codes and colors may not be available.</li>
+		</ul>
 		
 		<h2>Named sections</h2>
 		
@@ -128,6 +134,12 @@
 			<li>Added changelog, retroactively inserting previous entries based on GitHub commits</li>
 			<li>Changed alpha example so that the mentioned alpha value is an integer percentage</li>
 			<li>Further clarification of how named sections can be ignored</li>
+		</ul>
+		
+		<h4>2020-08-10:</h4> 
+		
+		<ul>
+			<li>Added color definition sorting recommendation</li>
 		</ul>
 		
 		

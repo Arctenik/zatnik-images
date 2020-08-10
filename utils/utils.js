@@ -39,12 +39,14 @@ zatnikOut.onfocus = () => zatnikOut.select();
 
 function imageDataToZatnik({width, height, data: pixels}) {
 	var colors = new Set(),
+		colorAmounts = {},
 		hexPixels = [];
 	
 	for (let i = 0; i < pixels.length; i += 4) {
 		let color = rgbToHex(pixels[i], pixels[i+1], pixels[i+2], pixels[i+3]);
 		hexPixels.push(color);
 		colors.add(color);
+		colorAmounts[color] = (colorAmounts[color] || 0) + 1;
 	}
 	
 	var ids = {},
@@ -55,16 +57,22 @@ function imageDataToZatnik({width, height, data: pixels}) {
 	while (colors.size > colorIdChars.length ** idLength)
 		idLength += 1;
 	
-	[...colors].forEach((color, i) => {
+	[...colors].sort((a, b) => {
+		let aOpaque = a.substring(6, 8) === "ff",
+			bOpaque = b.substring(6, 8) === "ff";
+		
+		if (!aOpaque && bOpaque) return -1;
+		else if (!bOpaque && aOpaque) return 1;
+		else return colorAmounts[b] - colorAmounts[a];
+	}).forEach((color, i) => {
 		var id = makeColorId(i, idLength),
 			def = id + color.substring(0, 6),
 			alpha = color.substring(6);
 		
 		ids[color] = id;
-		if (alpha === "ff") idDefs += def;
-		else {
-			idDefs = def + idDefs;
-			alphas = alpha + alphas;
+		idDefs += def;
+		if (alpha !== "ff") {
+			alphas += alpha;
 		}
 	});
 	
