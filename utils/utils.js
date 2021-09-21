@@ -25,9 +25,10 @@ var colorIdChars = "0123456789abcdefghijklmnopqrstuvwxyz~`!@#$%^&*()-_=+[{]}\\|;
 pngConvertButton.onclick = () => {
 	var canvas = document.createElement("canvas"),
 		ctx = canvas.getContext("2d"),
-		url = URL.createObjectURL(pngInp.files[0]);
+		file = pngInp.files[0],
+		url = URL.createObjectURL(file);
 	
-	PNG.load(url, canvas, () => {
+	loadImageToCanvas(file, url, canvas, ctx, () => {
 		URL.revokeObjectURL(url);
 		zatnikOut.value = imageDataToZatnik(ctx.getImageData(0, 0, canvas.width, canvas.height));
 		zatnikOutContainer.classList.remove("hidden");
@@ -36,6 +37,21 @@ pngConvertButton.onclick = () => {
 
 zatnikOut.onfocus = () => zatnikOut.select();
 
+
+function loadImageToCanvas(file, url, canvas, ctx, cb) {
+	if (file.type === "image/png") {
+		PNG.load(url, canvas, cb);
+	} else {
+		let image = new Image();
+		image.addEventListener("load", () => {
+			canvas.width = image.width;
+			canvas.height = image.height;
+			ctx.drawImage(image, 0, 0);
+			cb();
+		});
+		image.src = url;
+	}
+}
 
 function imageDataToZatnik({width, height, data: pixels}) {
 	var colors = new Set(),
