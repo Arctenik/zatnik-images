@@ -1,0 +1,32 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
+
+
+body {
+	--font-monospace: "IBM Plex Mono";
+	
+	font-family: Arial, sans-serif;
+	max-width: 50em;
+	margin: 4em auto;
+}
+
+li {
+	margin-bottom: 0.5em;
+}
+
+h5 {
+	font-size: 1em;
+	font-weight: normal;
+	text-decoration: underline;
+	margin-bottom: 0;
+}
+
+input[type=text] {
+	width: 10em;
+}
+
+input[type=number] {
+	width: 4em;
+}
+

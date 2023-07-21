@@ -1,20 +1,13 @@
 
 
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
-
-
 .code {
-	font-family: "IBM Plex Mono", Consolas, monospace;
+	font-family: var(--font-monospace), monospace;
 	overflow-wrap: anywhere;
 }
 
 .hl {
 	border-bottom: 1px dashed lightgreen;
 	color: green;
-}
-
-li {
-	margin-bottom: 0.5em;
 }
 
 .indent {
