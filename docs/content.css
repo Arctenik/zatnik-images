@@ -1,10 +1,10 @@
 
 
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
+@import url('https://fontlibrary.org//face/code-new-roman');
 
 
 body {
-	--font-monospace: "IBM Plex Mono";
+	--font-monospace: "CodeNewRomanRegular";
 	
 	font-family: Arial, sans-serif;
 	max-width: 50em;
